@@ -17,13 +17,13 @@ export interface CreateUserParams {
   roles?: Role[];
   verified?: boolean;
   secret?: string;
+  expoPushTokens?: string[];
 }
 
 export interface UpdateUserParams {
-  email: string;
-  password: string;
-  roles?: Role[];
-  verified?: boolean;
+  email?: string;
+  password?: string;
+  expoPushTokens?: string[];
 }
 
 export interface APIUser {
@@ -31,6 +31,7 @@ export interface APIUser {
   email: string;
   verified: boolean;
   roles: Role[];
+  expoPushTokens: string[];
 }
 
 export enum Role {

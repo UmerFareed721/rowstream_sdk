@@ -311,11 +311,11 @@ describe('Teams', () => {
       expect(coachProf).to.deep.equal(tm1Prof);
     });
 
-    it('should assign the user a Coach role', async () => {
-      //  TODO:  Support separate mechanism for password update.
-      const userParams: UpdateUserParams = { email: coach.email, password: coach.password, roles: [Role.Coach] };
-      await userSDK.update(coach.username, userParams, coachToken);
-    });
+    // it('should assign the user a Coach role', async () => {
+    //   //  TODO:  Support separate mechanism for password update.
+    //   const userParams: UpdateUserParams = { email: coach.email, password: coach.password, roles: [Role.Coach] };
+    //   await userSDK.update(coach.username, userParams, coachToken);
+    // });
   });
 
   describe('Team', () => {

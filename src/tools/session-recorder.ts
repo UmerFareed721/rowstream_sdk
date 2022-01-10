@@ -42,7 +42,7 @@ import { SessionStorage } from './session-storage';
    private statSyncTimers: { [statType: string]: any } = {};
 
    //  Set the Sync Interval (ms)
-   private syncInterval = 2000;
+   private syncInterval = 5000;
 
    //  Define Session
    private sessionInternal?: SessionInternal;

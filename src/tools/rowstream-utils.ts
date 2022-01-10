@@ -10,9 +10,50 @@
 
  //  TODO:  General:  Make the verification page look nicer AND move to the RowStream.com domain.  Improve email template.
 
- import { SessionInternal, AggResult, BaseObject, BucketQueryParamsAPI, BucketQueryReturn } from '../models';
- import { TeamSDK, ProfileSDK, UserSDK, SessionStrokeDataStatSDK, SessionSDK, SessionGeneralStatSDK, SessionAdditional1StatSDK, SessionAdditional2StatSDK, EventLoggerSDK, TokenSDK, ScheduledWorkoutSDK } from '../sdks';
+ import { AggResult, BaseObject, BucketQueryParamsAPI, BucketQueryReturn, SessionInternal } from '../models';
+import { EventLoggerSDK, ProfileSDK, ScheduledWorkoutSDK, SessionAdditional1StatSDK, SessionAdditional2StatSDK, SessionGeneralStatSDK, SessionSDK, SessionStrokeDataStatSDK, TeamSDK, TokenSDK, UserSDK } from '../sdks';
 import { MessageSDK } from '../sdks/message-sdk';
+
+export const buildHTTPHost = (hostname: string, tls: boolean) => {
+  return `http${ tls ? 's' : '' }://${ hostname }:3000/v0`;
+};
+
+export const buildWSHost = (hostname: string, tls: boolean) => {
+  return `ws${ tls ? 's' : '' }://${ hostname }:3000`;
+};
+
+export interface SDKs {
+  userSDK: UserSDK;
+  sessionSDK: SessionSDK;
+  sessionGeneralStatSDK: SessionGeneralStatSDK;
+  sessionAdditional1StatSDK: SessionAdditional1StatSDK;
+  sessionAdditional2StatSDK: SessionAdditional2StatSDK;
+  sessionStrokeDataStatSDK: SessionStrokeDataStatSDK;
+  teamSDK: TeamSDK;
+  profileSDK: ProfileSDK;
+  eventLoggerSDK: EventLoggerSDK;
+  tokenSDK: TokenSDK;
+  scheduledWorkoutSDK: ScheduledWorkoutSDK;
+  messageSDK: MessageSDK;
+}
+
+export const buildSDKs = (host: string): SDKs => {
+
+  return {
+    userSDK: new UserSDK(host),
+    sessionSDK: new SessionSDK(host),
+    sessionGeneralStatSDK: new SessionGeneralStatSDK(host),
+    sessionAdditional1StatSDK: new SessionAdditional1StatSDK(host),
+    sessionAdditional2StatSDK: new SessionAdditional2StatSDK(host),
+    sessionStrokeDataStatSDK: new SessionStrokeDataStatSDK(host),
+    teamSDK: new TeamSDK(host),
+    profileSDK: new ProfileSDK(host),
+    eventLoggerSDK: new EventLoggerSDK(host),
+    tokenSDK: new TokenSDK(host),
+    scheduledWorkoutSDK: new ScheduledWorkoutSDK(host),
+    messageSDK: new MessageSDK(host)
+  };
+};
 
  //  TODO:  Get this from an ENV var?  This would work in the Server context, not sure about the UI context?
  //  TODO:  Refactor this so the SDKs can be re-built after setting the host, OR load from a config, etc...

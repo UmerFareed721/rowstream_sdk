@@ -8,7 +8,7 @@
  * licensed under the MIT license.
  */
 
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import { CreateUserParams, Profile, Session, TeamInternal } from '../src';
 import { TokenParams } from '../src/models/token-model';
 import { messageSDK, tokenSDK, teamSDK } from '../src/tools/rowstream-utils';
@@ -80,7 +80,7 @@ const tokenParams: TokenParams = {
 
 
 //  Test the SDKs
-describe.only('Messages', () => {
+describe('Messages', () => {
 
   //  Magic Boathouse User
   let merlinToken: string;
@@ -116,21 +116,28 @@ describe.only('Messages', () => {
 
 
   //
-  //  Pippins Boathouse Message
+  //  Pippins Boathouse Message (with Channels)
   //
 
   it('should create a message from Pippin to the "Irish Boathouse"', async () => {
-    await messageSDK.create({ text: pippinsBoathouseMessage, recipient: irishBoathouse.id, recipientType: 'boathouse' }, pippinToken);
+    await messageSDK.create({ text: pippinsBoathouseMessage, recipient: irishBoathouse.id, recipientType: 'boathouse', channel: 'general' }, pippinToken);
   });
 
   it('should see Pippins Boathouse message when searching as Liam', async () => {
     const messages = await messageSDK.search({}, liamToken);
-    expect(messages.results.find(message => message.text === pippinsBoathouseMessage) != undefined);
+    console.log(messages.results.find(message => message.text === pippinsBoathouseMessage));
+    assert(messages.results.find(message => message.text === pippinsBoathouseMessage) !== undefined);
+  });
+
+
+  it('should not see Pippins Boathouse message when searching as Liam when scoping by a different channel', async () => {
+    const messages = await messageSDK.search({ search: { match: { channel: 'support' } } }, liamToken);
+    assert(messages.results.find(message => message.text === pippinsBoathouseMessage) == undefined);
   });
 
   it('should not see Pippins Boathouse message when searching as Merlin', async () => {
     const messages = await messageSDK.search({}, merlinToken);
-    expect(messages.results.find(message => message.text === pippinsBoathouseMessage) == undefined);
+    assert(messages.results.find(message => message.text === pippinsBoathouseMessage) == undefined);
   });
 
 
@@ -144,13 +151,11 @@ describe.only('Messages', () => {
 
   it('should see Pippins private message when searching as Liam', async () => {
     const messages = await messageSDK.search({}, liamToken);
-    console.log(JSON.stringify(messages));
-    expect(messages.results.find(message => message.text === pippinsPrivateMessage) != undefined);
+    assert(messages.results.find(message => message.text === pippinsPrivateMessage) != undefined);
   });
 
   it('should not see Pippins private message when searching as Merlin', async () => {
     const messages = await messageSDK.search({}, merlinToken);
-    console.log(JSON.stringify(messages));
-    expect(messages.results.find(message => message.text === pippinsPrivateMessage) == undefined);
+    assert(messages.results.find(message => message.text === pippinsPrivateMessage) == undefined);
   });
 });

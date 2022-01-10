@@ -22,3 +22,4 @@ export * from './events';
 export * from './scheduled-workout';
 export * from './workout-stat';
 export * from './message';
+export * from './jersey-model';
