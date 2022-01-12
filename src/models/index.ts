@@ -18,6 +18,7 @@ export * from './bucket-query-params';
 export * from './search-params';
 export * from './bulk-types';
 export * from './team';
+export * from './upload-image-model';
 export * from './events';
 export * from './scheduled-workout';
 export * from './workout-stat';

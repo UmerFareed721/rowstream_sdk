@@ -1,17 +1,32 @@
 {
-  "name": "sdk-library",
-  "version": "0.1.0",
-  "description": "SDK Starter Kit",
-  "author": "William Sullivan",
-  "main": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
-  "scripts": {
-    "build": "npm run build-ts && npm run tslint",
-    "test": "mocha ./dist/test/**/*.test.js",
-    "watch-test": "npm run test -- --watchAll",
-    "build-ts": "tsc --declaration",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "tslint-fix": "tslint -c tslint.json -p tsconfig.json --fix"
+  "_args": [
+    [
+      "git+https://github.com/UmerFareed721/rowstream_sdk.git",
+      "/Users/macbookpro/Documents/OfficeProjects/RowStreamProject"
+    ]
+  ],
+  "_from": "git+https://github.com/UmerFareed721/rowstream_sdk.git",
+  "_id": "sdk-library@git+https://github.com/UmerFareed721/rowstream_sdk.git#e70b12a95603fda535d3024d9a652d06911c1aa6",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/sdk-library",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "git+https://github.com/UmerFareed721/rowstream_sdk.git",
+    "rawSpec": "git+https://github.com/UmerFareed721/rowstream_sdk.git",
+    "saveSpec": "git+https://github.com/UmerFareed721/rowstream_sdk.git",
+    "fetchSpec": "https://github.com/UmerFareed721/rowstream_sdk.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/UmerFareed721/rowstream_sdk.git#e70b12a95603fda535d3024d9a652d06911c1aa6",
+  "_spec": "git+https://github.com/UmerFareed721/rowstream_sdk.git",
+  "_where": "/Users/macbookpro/Documents/OfficeProjects/RowStreamProject",
+  "author": {
+    "name": "William Sullivan"
   },
   "dependencies": {
     "@types/bluebird": "^3.5.26",
@@ -27,10 +42,23 @@
     "uuid": "^3.3.2",
     "ws": "^7.1.2"
   },
+  "description": "SDK Starter Kit",
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "ts-node": "^5.0.0",
     "tslint": "^5.9.1"
-  }
+  },
+  "main": "./dist/src/index.js",
+  "name": "sdk-library",
+  "scripts": {
+    "build": "npm run build-ts && npm run tslint",
+    "build-ts": "tsc --declaration",
+    "test": "mocha ./dist/test/**/*.test.js",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "tslint-fix": "tslint -c tslint.json -p tsconfig.json --fix",
+    "watch-test": "npm run test -- --watchAll"
+  },
+  "types": "./dist/src/index.d.ts",
+  "version": "0.1.0"
 }

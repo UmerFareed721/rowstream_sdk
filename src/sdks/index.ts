@@ -17,6 +17,7 @@ export * from './session-additional1-stat';
 export * from './session-additional2-stat';
 export * from './session-stroke-data-stat';
 export * from './team-sdk';
+export * from './upload-image-sdk';
 export * from './event-logger-sdk';
 export * from './scheduled-workout-sdk';
 export * from './jersey-sdk';
